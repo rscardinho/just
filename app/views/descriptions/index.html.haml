@@ -1,0 +1,18 @@
+%h1= 'Listing Descriptions'
+
+- @descriptions.each do |description|
+  %tr
+    %td= description.description.html_safe
+
+- if user_signed_in?
+  Signed in as
+  %b= current_user.email
+  Not you?
+  = link_to "Logout", destroy_user_session_path, method: :delete
+- else
+  = link_to "Sign up", new_user_registration_path
+  = link_to "Sign in", new_user_session_path
+  = link_to "Login in with Google Account", user_omniauth_authorize_path(:google_oauth2)
+
+
+  
